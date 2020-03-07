@@ -1,1 +1,5 @@
-liuhanwen: qianjiayu
+mysql:
+  user: root
+  pass: qianjiayu
+  ip: 127.0.0.1:3306
+  database: blog
