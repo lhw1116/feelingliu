@@ -1,14 +1,19 @@
 package common
 
 import (
+	"feelingliu/modles"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
 
+var MysqlDB *gorm.DB
+
 //  创建mysql连接池
 func mysqlconn() {
 
+	//  定义错误类型
+	var err error
 	//  定义mysql连接串
 	user := Viper.GetString("mysql.user")
 	pass := Viper.GetString("mysql.pass")
@@ -16,11 +21,13 @@ func mysqlconn() {
 	database := Viper.GetString("mysql.database")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",user,pass,ip,database)
-
 	// open connect
-	db, err := gorm.Open("mysql", dsn)
+	MysqlDB, err = gorm.Open("mysql", dsn)
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer db.Close()
+	MysqlDB.DB().SetMaxOpenConns(100)
+	MysqlDB.DB().SetConnMaxLifetime(100)
+	MysqlDB.DB().SetMaxIdleConns(100)
+	MysqlDB.AutoMigrate(&modles.User{})
 }
