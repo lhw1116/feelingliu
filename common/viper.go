@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 )
-var Viper *viper.Viper
+var (
+	Viper *viper.Viper
+	RUNMODE string
+)
 
 
 //  viper 加载配置文件初始化
@@ -19,4 +22,5 @@ func viperLeader() {
 	if err := Viper.ReadInConfig(); err != nil{
 		fmt.Println(err)
 	}
+	RUNMODE = viper.GetString("RUNMODE")
 }

@@ -15,6 +15,7 @@ func mysqlconn() {
 	//  定义错误类型
 	var err error
 	//  定义mysql连接串
+	dbType := Viper.GetString("mysql.type")
 	user := Viper.GetString("mysql.user")
 	pass := Viper.GetString("mysql.pass")
 	ip := Viper.GetString("mysql.ip")
@@ -22,10 +23,14 @@ func mysqlconn() {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",user,pass,ip,database)
 	// open connect
-	MysqlDB, err = gorm.Open("mysql", dsn)
+	MysqlDB, err = gorm.Open(dbType, dsn)
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// 启用Logger，显示详细日志
+	MysqlDB.LogMode(true)
+
 	MysqlDB.DB().SetMaxOpenConns(100)
 	MysqlDB.DB().SetConnMaxLifetime(100)
 	MysqlDB.DB().SetMaxIdleConns(100)
