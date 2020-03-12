@@ -1,5 +1,6 @@
 package public
 
+//  自定义的错误信息， 对应错误码
 
 var MsgFlags = map[int]string {
 	SUCCESS : "ok",
@@ -19,6 +20,5 @@ func GetMsg(code int) string {
 	if ok {
 		return msg
 	}
-
 	return MsgFlags[ERROR]
 }

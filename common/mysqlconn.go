@@ -12,7 +12,7 @@ var MysqlDB *gorm.DB
 //  创建mysql连接池
 func mysqlconn() {
 
-	//  定义错误类型
+	//  定义错误类型(因为需要赋值给全局变量的原因)
 	var err error
 	//  定义mysql连接串
 	dbType := Viper.GetString("mysql.type")

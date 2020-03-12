@@ -1,14 +1,20 @@
 package v1
 
-
 import (
-"github.com/gin-gonic/gin"
+	"feelingliu/common"
+	"feelingliu/modles"
+	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 //获取多个文章标签
 func GetTags(c *gin.Context) {
+	db := common.MysqlDB
+	var users modles.User
+	db.Where("id = ?",1).Find(&users)
+	fmt.Println(users)
 	c.JSON(200,gin.H{
-		"message":"ok",
+		"message":users.Password,
 	})
 }
 

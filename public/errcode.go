@@ -1,5 +1,7 @@
 package public
 
+//  自定义的的错误码
+
 const (
 	SUCCESS = 200
 	ERROR = 500
