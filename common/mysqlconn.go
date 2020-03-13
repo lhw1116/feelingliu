@@ -27,12 +27,20 @@ func mysqlconn() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	//  全局禁用表名复数
+	MysqlDB.SingularTable(true)
 	// 启用Logger，显示详细日志
+
 	MysqlDB.LogMode(true)
 
 	MysqlDB.DB().SetMaxOpenConns(100)
 	MysqlDB.DB().SetConnMaxLifetime(100)
 	MysqlDB.DB().SetMaxIdleConns(100)
 	MysqlDB.AutoMigrate(&modles.User{})
+	MysqlDB.AutoMigrate(&modles.Auth{})
+
+}
+
+func CloseDB() {
+	defer MysqlDB.Close()
 }

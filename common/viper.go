@@ -7,6 +7,7 @@ import (
 var (
 	Viper *viper.Viper
 	RUNMODE string
+	JWTSECRET string
 )
 
 
@@ -23,4 +24,5 @@ func viperLeader() {
 		fmt.Println(err)
 	}
 	RUNMODE = viper.GetString("RUNMODE")
+	JWTSECRET = viper.GetString("JWTSECRET")
 }

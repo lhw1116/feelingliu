@@ -5,4 +5,4 @@ mysql:
   ip: 127.0.0.1:3306
   database: blog
 
-RUNMODE: debug
+JWT_SECRET: 23347$040412
