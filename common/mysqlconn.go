@@ -21,7 +21,7 @@ func mysqlconn() {
 	ip := Viper.GetString("mysql.ip")
 	database := Viper.GetString("mysql.database")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",user,pass,ip,database)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", user, pass, ip, database)
 	// open connect
 	MysqlDB, err = gorm.Open(dbType, dsn)
 	if err != nil {
@@ -37,7 +37,8 @@ func mysqlconn() {
 	MysqlDB.DB().SetConnMaxLifetime(100)
 	MysqlDB.DB().SetMaxIdleConns(100)
 	MysqlDB.AutoMigrate(&modles.User{})
-	MysqlDB.AutoMigrate(&modles.Auth{})
+	MysqlDB.AutoMigrate(&modles.Tag{})
+	MysqlDB.AutoMigrate(&modles.Article{})
 
 }
 

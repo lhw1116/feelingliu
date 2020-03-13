@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 )
+
 var (
-	Viper *viper.Viper
-	RUNMODE string
+	Viper     *viper.Viper
+	RUNMODE   string
 	JWTSECRET string
 )
-
 
 //  viper 加载配置文件初始化
 func viperLeader() {
@@ -19,8 +19,8 @@ func viperLeader() {
 	Viper.SetConfigName("conf")
 	Viper.AddConfigPath("./config")
 	//设置配置文件类型
-	Viper.SetConfigType("yaml");
-	if err := Viper.ReadInConfig(); err != nil{
+	Viper.SetConfigType("yaml")
+	if err := Viper.ReadInConfig(); err != nil {
 		fmt.Println(err)
 	}
 	RUNMODE = viper.GetString("RUNMODE")

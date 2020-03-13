@@ -20,15 +20,15 @@ func GenerateToken(username, password string) (string, error) {
 	expireTime := nowTime.Add(3 * time.Hour)
 
 	claims := Claims{
-		Username:       username,
-		Password:       password,
+		Username: username,
+		Password: password,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
-			Issuer: "feelingliu",
+			Issuer:    "feelingliu",
 		},
 	}
 
-	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	token, err := tokenClaims.SignedString(jwtSecret)
 
 	return token, err
@@ -45,24 +45,14 @@ func ParseToken(token string) (*Claims, error) {
 			return claims, nil
 		}
 	}
-	return nil,err
+	return nil, err
 }
 
-
 func CheckAuth(username, password string) bool {
-	var auth modles.Auth
-	common.MysqlDB.Select("id").Where(modles.Auth{Username:username, Password:password}).First(&auth)
+	var auth modles.User
+	common.MysqlDB.Select("id").Where(modles.User{Username: username, Password: password}).First(&auth)
 	if auth.Id > 0 {
 		return true
 	}
 	return false
 }
-
-
-
-
-
-
-
-
-

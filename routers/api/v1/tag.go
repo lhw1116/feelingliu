@@ -11,14 +11,14 @@ import (
 func GetTags(c *gin.Context) {
 	db := common.MysqlDB
 	var users modles.User
-	db.Where("id = ?",1).Find(&users)
+	db.Where("id = ?", 1).Find(&users)
 	fmt.Println(users)
-	c.JSON(200,gin.H{
-		"message":users.Password,
+	c.JSON(200, gin.H{
+		"message": users.Password,
 	})
 }
 
-//新增文章标签
+
 func AddTag(c *gin.Context) {
 
 }

@@ -21,9 +21,9 @@ func Getauth(c *gin.Context) {
 
 	err := c.BindJSON(&a)
 	if err != nil {
-		 fmt.Println(err)
+		fmt.Println(err)
 	} else {
-		isExist := utils.CheckAuth(a.Username,a.Password)
+		isExist := utils.CheckAuth(a.Username, a.Password)
 		if isExist {
 			token, err := utils.GenerateToken(a.Username, a.Password)
 			if err != nil {
@@ -36,9 +36,9 @@ func Getauth(c *gin.Context) {
 			code = public.ERROR_USERPASS
 		}
 	}
-	c.JSON(http.StatusOK,gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"code": code,
-		"msg": public.GetMsg(code),
+		"msg":  public.GetMsg(code),
 		"data": data,
 	})
 

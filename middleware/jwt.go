@@ -18,11 +18,9 @@ func JWT() gin.HandlerFunc {
 
 		code = public.SUCCESS
 		err := c.BindJSON(&getauth)
-		fmt.Println(getauth)
 		if err != nil {
 			fmt.Println(err)
 		}
-
 		if getauth.Token == "" {
 			code = public.INVALID_PARAMS
 		} else {
@@ -34,10 +32,10 @@ func JWT() gin.HandlerFunc {
 			}
 		}
 		if code != public.SUCCESS {
-			c.JSON(http.StatusUnauthorized,gin.H{
-				"code" : code,
-				"msg" : public.GetMsg(code),
-				"data" : data,
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"code": code,
+				"msg":  public.GetMsg(code),
+				"data": data,
 			})
 
 			c.Abort()
