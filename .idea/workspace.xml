@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4f17d49-7f5d-4b02-812a-b219b5e74489" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/timeStyle.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/mysqlconn.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/mysqlconn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modles/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/modles/tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modles/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/modles/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/api/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/api/v1/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/tag.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
     </list>
@@ -123,22 +128,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="505" y="51" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1583481020156" />
-    <state width="1865" height="339" key="GridCell.Tab.0.bottom" timestamp="1584092554640">
+    <state width="1865" height="335" key="GridCell.Tab.0.bottom" timestamp="1584697245369">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="339" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584092554640" />
-    <state width="1865" height="339" key="GridCell.Tab.0.center" timestamp="1584092554640">
+    <state width="1865" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584697245369" />
+    <state width="1865" height="335" key="GridCell.Tab.0.center" timestamp="1584697245369">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="339" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584092554640" />
-    <state width="1865" height="339" key="GridCell.Tab.0.left" timestamp="1584092554640">
+    <state width="1865" height="335" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584697245369" />
+    <state width="1865" height="335" key="GridCell.Tab.0.left" timestamp="1584697245369">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="339" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584092554640" />
-    <state width="1865" height="339" key="GridCell.Tab.0.right" timestamp="1584092554640">
+    <state width="1865" height="335" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584697245369" />
+    <state width="1865" height="335" key="GridCell.Tab.0.right" timestamp="1584697245369">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="339" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584092554640" />
+    <state width="1865" height="335" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584697245369" />
     <state width="1865" height="339" key="GridCell.Tab.1.bottom" timestamp="1584092554640">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -159,10 +164,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="348" y="81" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1583660906186" />
-    <state x="509" y="188" width="901" height="674" key="find.popup" timestamp="1584091159190">
+    <state x="509" y="188" width="901" height="674" key="find.popup" timestamp="1584631316120">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="509" y="188" width="901" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1584091159190" />
+    <state x="509" y="188" width="901" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1584631316120" />
     <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1583907885321">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

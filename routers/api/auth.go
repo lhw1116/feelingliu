@@ -13,7 +13,7 @@ type Auth struct {
 	Password string `json:"password"`
 }
 
-func Getauth(c *gin.Context) {
+func Login(c *gin.Context) {
 	var a Auth
 
 	data := make(map[string]interface{})

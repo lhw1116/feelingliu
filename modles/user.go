@@ -11,7 +11,5 @@ type User struct {
 }
 
 type GetAuth struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
 	Token    string `json:"token"`
 }

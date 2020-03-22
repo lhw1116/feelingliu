@@ -7,14 +7,14 @@ import (
 	v1 "feelingliu/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
+	var Router *gin.Engine
 
 func init() {
-	r := gin.Default()
+	Router := gin.Default()
 
 	gin.SetMode(common.RUNMODE)
-	r.GET("/auth", auth.Getauth)
-
-	api := r.Group("api/v1")
+	Router.POST("/login", auth.Login)
+	api := Router.Group("api/v1")
 	api.Use(middleware.JWT())
 	{
 		//  获取标签列表
@@ -45,5 +45,5 @@ func init() {
 		api.DELETE("/articles/:id", v1.DeleteArticle)
 
 	}
-	r.Run()
+	Router.Run(":8889")
 }

@@ -4,22 +4,26 @@ import (
 	"feelingliu/common"
 	"feelingliu/modles"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 //获取多个文章标签
 func GetTags(c *gin.Context) {
-	data := make([]string,0)
+	//data := make([]string,0)
 	db := common.MysqlDB
 	var res []modles.Tag
-	db.Select("tag_name").Find(&res)
+	db.Find(&res)
+	var arr []string
 	for _, v := range res {
-		data = append(data, v.TagName)
+		arr = append(arr,v.TagName)
 	}
-	c.JSON(http.StatusOK,gin.H{
+
+
+	r := make(map[string][]string)
+	r["tags"] = arr
+	c.JSON(200,gin.H{
 		"code":"200",
 		"msg": "ok",
-		"data":data,
+		"data":r,
 	})
 
 }
