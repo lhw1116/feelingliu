@@ -13,7 +13,7 @@ func init() {
 	Router := gin.Default()
 
 	gin.SetMode(common.RUNMODE)
-	Router.POST("/login", auth.Login)
+	Router.POST("/auth", auth.Login)
 	api := Router.Group("api/v1")
 	api.Use(middleware.JWT())
 	{
@@ -45,5 +45,5 @@ func init() {
 		api.DELETE("/articles/:id", v1.DeleteArticle)
 
 	}
-	Router.Run(":8889")
+	Router.Run(":8888")
 }

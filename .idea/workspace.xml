@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4f17d49-7f5d-4b02-812a-b219b5e74489" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/timeStyle.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/mysqlconn.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/mysqlconn.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modles/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/modles/tag.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modles/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/modles/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/api/v1/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/api/v1/tag.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
