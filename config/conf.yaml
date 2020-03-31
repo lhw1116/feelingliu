@@ -6,3 +6,7 @@ mysql:
   database: blog
 
 JWT_SECRET: 23347$040412
+
+redis:
+  ip: 127.0.0.1:6379
+  pass: qianjiayus

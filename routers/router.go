@@ -45,5 +45,5 @@ func init() {
 		api.DELETE("/articles/:id", v1.DeleteArticle)
 
 	}
-	Router.Run(":8888")
+	Router.Run(":3000")
 }

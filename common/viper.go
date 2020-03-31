@@ -22,6 +22,7 @@ func viperLeader() {
 	Viper.SetConfigType("yaml")
 	if err := Viper.ReadInConfig(); err != nil {
 		fmt.Println(err)
+
 	}
 	RUNMODE = viper.GetString("RUNMODE")
 	JWTSECRET = viper.GetString("JWTSECRET")
