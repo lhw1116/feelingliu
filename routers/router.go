@@ -2,7 +2,6 @@ package routers
 
 import (
 	"feelingliu/common"
-	"feelingliu/middleware"
 	auth "feelingliu/routers/api"
 	v1 "feelingliu/routers/api/v1"
 	"github.com/gin-gonic/gin"
@@ -15,7 +14,7 @@ func init() {
 	gin.SetMode(common.RUNMODE)
 	Router.POST("/auth", auth.Login)
 	api := Router.Group("api/v1")
-	api.Use(middleware.JWT())
+	//api.Use(middleware.JWT())
 	{
 		//  获取标签列表
 		api.GET("/tags", v1.GetTags)
@@ -45,5 +44,5 @@ func init() {
 		api.DELETE("/articles/:id", v1.DeleteArticle)
 
 	}
-	Router.Run(":3000")
+	Router.Run(":8000")
 }
