@@ -27,6 +27,20 @@ func InitRouter() *gin.Engine {
 	{
 		api.Static(modles.AppInfo.StaticBasePath, modles.AppInfo.UploadBasePath)
 		api.POST("/user/login",v1.Login)
+
+		api.POST("/user/logout",v1.Logout)
+
+		api.GET("/user/info", v1.GetUserInfo)
+
+		api.GET("/user/about", v1.GetUserAbout)
+
+		api.GET("/tags", v1.GetAllTags)
+
+		api.GET("/articles", v1.GetArticles)
+
+		api.GET("/articles/:id", v1.GetArticle)
+
+		api.Use(middleware.JWt())
 	}
 	return r
 

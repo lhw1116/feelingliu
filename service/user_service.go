@@ -31,7 +31,7 @@ func (u *User) CheckAuth() bool {
 	var user User
 	db := modles.DB.Where("username = ? AND password = ?", u.Username, u.Password).Find(&user)
 	if db.Error != nil {
-		utils.WriteErrorLog(db.Error)
+		utils.WriteErrorLog(db.Error.Error())
 	}
 	return user.ID > 0
 }
@@ -45,4 +45,32 @@ func (u User) GenToken() (string, error) {
 	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	token, e := tokenClaims.SignedString(jwtSecret)
 	return token, e
+}
+
+func GetUser() (User, error) {
+	var user User
+	db := modles.DB.Find(&user)
+	return user, db.Error
+}
+
+func GetAbout() (string, error) {
+	var user User
+	db := modles.DB.Select("about").Find(&user)
+	return user.About, db.Error
+}
+
+func ParseToken(tokenString string) error {
+	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return jwtSecret, nil
+	})
+
+	if token != nil {
+		if _, ok := token.Claims.(*CustomClaims); ok && token.Valid {
+			return nil
+		} else {
+			return err
+		}
+	}
+
+	return err
 }

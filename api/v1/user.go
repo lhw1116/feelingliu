@@ -18,7 +18,7 @@ func Login(c *gin.Context) {
 	isExist := user.CheckAuth()
 	fmt.Println(isExist)
 	if isExist {
-		token, err := user.GenToken()
+		token, err := user.GenToken()  //  for last token...
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, utils.GenResponse(40004, nil, err))
 			return
@@ -28,5 +28,29 @@ func Login(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusUnauthorized, utils.GenResponse(40001, nil, nil))
+	return
+}
+
+func Logout(c *gin.Context) {
+	c.JSON(http.StatusOK, utils.GenResponse(20000, nil, nil))
+}
+
+func GetUserInfo(c *gin.Context) {
+	userInfo, err := service.GetUser()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40027, nil, err))
+		return
+	}
+	c.JSON(http.StatusOK, utils.GenResponse(20000, userInfo, nil))
+	return
+}
+
+func GetUserAbout(c *gin.Context) {
+	about, e := service.GetAbout()
+	if e != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40027, nil, e))
+		return
+	}
+	c.JSON(http.StatusOK, utils.GenResponse(20000, about, nil))
 	return
 }
