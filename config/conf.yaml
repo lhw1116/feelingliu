@@ -9,7 +9,7 @@ app:
   apiBaseUrl: "/api/v1"
 server:
   runMode: "debug"
-  serverAddr: "127.0.0.1:8000"
+  serverAddr: "127.0.0.1:8888"
   readTimeout: 60
   writeTimeout: 60
 database:

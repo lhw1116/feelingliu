@@ -1,0 +1,41 @@
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> github.com/gin-gonic/gin.RecoveryWithWriter.func1 (3 handlers)
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> github.com/gin-gonic/gin.RecoveryWithWriter.func1 (3 handlers)
+[INFO] - 127.0.0.1 - [2020-04-13 16:38:58] "POST /api/v1/user/login HTTP/1.1 200 0s "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[ERROR] - 127.0.0.1 - [2020-04-13 16:40:56] "POST /api/v1/user/login HTTP/1.1 401 34.809ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[ERROR] - 127.0.0.1 - [2020-04-13 16:43:28] "POST /api/v1/user/login HTTP/1.1 401 39.1001ms "PostmanRuntime/7.24.1" "
+[ERROR] - 127.0.0.1 - [2020-04-13 16:44:18] "POST /api/v1/user/login HTTP/1.1 401 5.0011ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[ERROR] - 127.0.0.1 - [2020-04-13 16:47:47] "POST /api/v1/user/login HTTP/1.1 401 34.0041ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[ERROR] - 127.0.0.1 - [2020-04-13 16:48:30] "POST /api/v1/user/login HTTP/1.1 401 12.0686ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[ERROR] - 127.0.0.1 - [2020-04-13 16:48:53] "POST /api/v1/user/login HTTP/1.1 401 17.2642ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[INFO] - 127.0.0.1 - [2020-04-13 16:49:34] "POST /api/v1/user/login HTTP/1.1 200 27.4023ms "PostmanRuntime/7.24.1" "
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)
+[GIN-debug] GET    /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /api/v1/static/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/user/login        --> feelingliu/api/v1.Login (4 handlers)

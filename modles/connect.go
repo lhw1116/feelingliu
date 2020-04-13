@@ -1,16 +1,14 @@
-package utils
+package modles
 
 import (
-	"fmt"
 	"github.com/spf13/viper"
 	"time"
 )
-import "feelingliu/modles"
 
-var AppInfo = &modles.App{}
-var ServerInfo = &modles.Server{}
-var DBInfo = &modles.DataBase{}
-var RedisInfo = &modles.Redis{}
+var AppInfo = &App{}
+var ServerInfo = &Server{}
+var DBInfo = &DataBase{}
+var RedisInfo = &Redis{}
 
 func init() {
 	//设置配置文件的名字
@@ -31,7 +29,6 @@ func init() {
 	AppInfo.ImageRelPath = viper.GetString("app.imageRelPath")
 	AppInfo.AvatarRelPath = viper.GetString("app.avatarRelPath")
 	AppInfo.ApiBaseUrl = viper.GetString("app.apiBaseUrl")
-	fmt.Println(AppInfo)
 
 	//  Init projrct run env base information
 	ServerInfo.RunMode = viper.GetString("server.runMode")
