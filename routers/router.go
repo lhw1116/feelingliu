@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"feelingliu/common"
 	auth "feelingliu/routers/api"
 	v1 "feelingliu/routers/api/v1"
+	"feelingliu/utils"
 	"github.com/gin-gonic/gin"
 )
 	var Router *gin.Engine
@@ -11,7 +11,7 @@ import (
 func init() {
 	Router := gin.Default()
 
-	gin.SetMode(common.RUNMODE)
+	gin.SetMode(utils.ServerInfo.RunMode)
 	Router.POST("/auth", auth.Login)
 	api := Router.Group("api/v1")
 	//api.Use(middleware.JWT())
@@ -46,3 +46,4 @@ func init() {
 	}
 	Router.Run(":8000")
 }
+  
