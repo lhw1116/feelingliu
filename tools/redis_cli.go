@@ -2,6 +2,7 @@ package tools
 
 import (
 	"feelingliu/modles"
+	"time"
 )
 
 type Options struct {
@@ -41,58 +42,45 @@ func SetKey(key string, value interface{}, opts ...Option) error {
 
 	options := newOptions(opts...)
 	if options.Timeout {
-		//_, err := conn.Do("SET", key, value, "EX", modles.RedisInfo.CacheTime)
-		//return err
+		_, err := conn.Set(key, value, time.Duration(modles.RedisInfo.CacheTime)).Result()
+		return err
 	}
-	//_, err := conn.Do("SET", key, value)
-	//return err
+	_, err := conn.Set(key, value, 0).Result()
+	return err
 }
 
 func GetKey(key string) (data interface{}, err error) {
-	conn := modles.RedisPool.Get()
+	conn := modles.RedisPool
 	defer func() {
-		if e := conn.Close(); e != nil {
+		if err := conn.Close(); err != nil {
 			return
 		}
 	}()
 
-	data, err = conn.Do("GET", key)
+	data, err = conn.Get(key).Result()
 	return
 }
 
 func DelKey(key string) error {
-	conn := modles.RedisPool.Get()
+	conn := modles.RedisPool
 	defer func() {
 		if e := conn.Close(); e != nil {
 			return
 		}
 	}()
 
-	_, err := conn.Do("DEL", key)
+	_, err := conn.Del(key).Result()
 	return err
 }
 
 func INCRKey(key string) error {
-	conn := modles.RedisPool.Get()
+	conn := modles.RedisPool
 	defer func() {
 		if e := conn.Close(); e != nil {
 			return
 		}
 	}()
 
-	_, err := conn.Do("INCR", key)
-	return err
-}
-
-
-func INCRKey(key string) error {
-	conn := models.RedisPool.Get()
-	defer func() {
-		if e := conn.Close(); e != nil {
-			return
-		}
-	}()
-
-	_, err := conn.Do("INCR", key)
+	_, err := conn.Incr(key).Result()
 	return err
 }
