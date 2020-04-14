@@ -31,13 +31,13 @@ func init() {
 	DB.DB().SetMaxOpenConns(100)
 
 	//  Init redispool connect...
-	//RedisPool = redis.NewClient(&redis.Options{
-	//	Addr:     fmt.Sprint("%s:%s", RedisInfo.Host, RedisInfo.Port),
-	//	Password: RedisInfo.Password,
-	//	DB:       RedisInfo.DB,
-	//})
-	//_, err  := RedisPool.Ping().Result()
-	//if err != nil {
-	//	panic(err)
-	//}
+	RedisPool = redis.NewClient(&redis.Options{
+		Addr:     fmt.Sprint("%s:%s", RedisInfo.Host, RedisInfo.Port),
+		Password: RedisInfo.Password,
+		DB:       RedisInfo.DB,
+	})
+	_, err  := RedisPool.Ping().Result()
+	if err != nil {
+		panic(err)
+	}
 }

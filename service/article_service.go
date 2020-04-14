@@ -71,7 +71,7 @@ func newOptions(opts ...Option) Options {
 
 func GetArticlesByTag(opts ...Option) (data Articles, err error) {
 	options := newOptions(opts...)
-	baseSql := "SELECT %s FROM blog_article a  INNER JOIN blog_tag_article ta ON a.id=ta.article_id INNER JOIN blog_tag t ON ta.tag_id=t.id AND t.tag_name=" + "'" + options.T + "'" + ""
+	baseSql := "SELECT %s FROM article a  INNER JOIN blog_tag_article ta ON a.id=ta.article_id INNER JOIN tag t ON ta.tag_id=t.id AND t.tag_name=" + "'" + options.T + "'" + ""
 	data, err = genArticles(baseSql, opts...)
 	return
 }
@@ -97,13 +97,12 @@ func genArticles(baseSql string, opts ...Option) (data Articles, err error) {
 	}
 	offset := (options.Page - 1) * options.Limit
 	selectSql := fmt.Sprintf(baseSql, "a.id, a.title, a.created_time, a.updated_time, a.`status`") + f + fmt.Sprintf(" ORDER BY a.id DESC limit %d offset %d", options.Limit, offset)
-
-	if err = db.Select(&articles, selectSql); err != nil {
+	if db := modles.DB.Exec(selectSql).Find(&articles); db.Error != nil {
 		return
 	}
 
 	var total int
-	if err = db.Get(&total, fmt.Sprintf(baseSql, "count(1)")+f); err != nil {
+	if findtotal := modles.DB.Exec(fmt.Sprintf(baseSql, "count(1)") + f).Find(&total); findtotal.Error != nil {
 		return
 	}
 
@@ -172,9 +171,9 @@ func SetTag(t string) Option {
 func SearchArticle(key, status string, opts ...Option) (data Articles, err error) {
 	var baseSql string
 	if status == "" {
-		baseSql = `SELECT %s FROM blog_article a WHERE a.title LIKE '%%` + key + `%%'`
+		baseSql = `SELECT %s FROM article a WHERE a.title LIKE '%%` + key + `%%'`
 	} else {
-		baseSql = `SELECT %s FROM blog_article a WHERE a.title LIKE '%%` + key + `%%' AND a.status='` + status + `'`
+		baseSql = `SELECT %s FROM article a WHERE a.title LIKE '%%` + key + `%%' AND a.status='` + status + `'`
 	}
 
 	data, err = genArticles(baseSql, opts...)
@@ -241,7 +240,7 @@ func SearchArticle(key, status string, opts ...Option) (data Articles, err error
 //}
 
 func (a Article) GetAll(opts ...Option) (data Articles, err error) {
-	baseSql := "select %s from blog_article a"
+	baseSql := "select %s from article a"
 	data, err = genArticles(baseSql, opts...)
 	return
 }
@@ -262,20 +261,21 @@ func setArticleCache(key string, value Articles) error {
 func (a Article) GetOne(opts ...Option) (ArticleDetail, error) {
 	options := newOptions(opts...)
 	var one Article
-	if e := db.Get(&one, "select * from blog_article where id=?", a.ID); e != nil {
-		return ArticleDetail{}, e
+	if db := modles.DB.Where("id = ?",a.ID).Find(&one); db.Error != nil {
+		return ArticleDetail{}, db.Error
 	}
+
 	tags, _ := GetTagsByArticleID(a.ID)
 
 	viewKey := one.ViewKey()
 	n, err := getViews(viewKey)
 	if err != nil {
-		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 获取阅读量失败, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), err))
+		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 获取阅读量失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), err))
 	}
 
 	if !options.Admin {
 		if e := addView(viewKey); e != nil {
-			utils.WriteErrorLog(fmt.Sprintf("[ %s ] 添加阅读量失败, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), e))
+			utils.WriteErrorLog(fmt.Sprintf("[ %s ] 添加阅读量失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
 		}
 	}
 	return ArticleDetail{one, tags, n}, nil
@@ -288,8 +288,8 @@ func addView(key string) error {
 
 func GetTagsByArticleID(articleID int) ([]Tag, error) {
 	var t []Tag
-	if e := db.Select(&t, "SELECT t.* FROM blog_tag t RIGHT JOIN blog_tag_article ta ON t.id=ta.tag_id WHERE ta.article_id=?", articleID); e != nil {
-		return nil, e
+	if db := modles.DB.Exec("SELECT t.* FROM tag t RIGHT JOIN blog_tag_article ta ON t.id=ta.tag_id WHERE ta.article_id="+"`"+strconv.Itoa(articleID)+"`").Find(&t); db.Error != nil {
+		return nil, db.Error
 	}
 	return t, nil
 }
