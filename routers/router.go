@@ -41,6 +41,19 @@ func InitRouter() *gin.Engine {
 		api.GET("/articles/:id", v1.GetArticle)
 
 		api.Use(middleware.JWt())
+
+		api.PATCH("/user/edit", v1.EditUser)
+
+		api.POST("/tags", v1.CreateTag)
+
+		api.PUT("/tags/:id", v1.EditTag)
+
+		api.DELETE("/tags/:id", v1.DeleteTag)
+
+		api.POST("/articles", v1.CreateArticle)
+		/*
+		Error 1452: Cannot add or update a child row: a foreign key constraint fails (`blog`.`article`, CONSTRAINT `tags` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+		 */
 	}
 	return r
 

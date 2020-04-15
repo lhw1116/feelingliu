@@ -1,9 +1,9 @@
 package v1
 
 import (
+	"encoding/json"
 	"feelingliu/service"
 	"feelingliu/utils"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -16,7 +16,6 @@ func Login(c *gin.Context) {
 		return
 	}
 	isExist := user.CheckAuth()
-	fmt.Println(isExist)
 	if isExist {
 		token, err := user.GenToken()  //  for last token...
 		if err != nil {
@@ -52,5 +51,41 @@ func GetUserAbout(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, utils.GenResponse(20000, about, nil))
+	return
+}
+
+
+func EditUser(c *gin.Context) {
+
+	bytes, err := c.GetRawData()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40028, nil, err))
+		return
+	}
+
+	u := service.User{}
+	if e := json.Unmarshal(bytes, &u); e != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40028, nil, e))
+		return
+	}
+
+	if u.Password != "" {
+		if e := u.ResetPassword(); e != nil {
+			c.JSON(http.StatusInternalServerError, utils.GenResponse(40028, nil, e))
+			return
+		}
+	} else if u.About != "" {
+		if e := u.EditAbout(); e != nil {
+			c.JSON(http.StatusInternalServerError, utils.GenResponse(40028, nil, e))
+			return
+		}
+	} else {
+		if e := u.EditUser(); e != nil {
+			c.JSON(http.StatusInternalServerError, utils.GenResponse(40028, nil, e))
+			return
+		}
+	}
+
+	c.JSON(http.StatusOK, utils.GenResponse(20000, u, nil))
 	return
 }

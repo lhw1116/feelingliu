@@ -32,12 +32,13 @@ func init() {
 
 	//  Init redispool connect...
 	RedisPool = redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprint("%s:%s", RedisInfo.Host, RedisInfo.Port),
+		Addr:     fmt.Sprintf("%s:%s", RedisInfo.Host, RedisInfo.Port),
 		Password: RedisInfo.Password,
 		DB:       RedisInfo.DB,
 	})
-	_, err  := RedisPool.Ping().Result()
+	re, err  := RedisPool.Ping().Result()
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("re:",re)
 }

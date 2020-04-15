@@ -74,3 +74,18 @@ func ParseToken(tokenString string) error {
 
 	return err
 }
+
+func (u User) ResetPassword() error {
+	db := modles.DB.Model(&User{}).Update("password", utils.EncodeMD5(u.Password))
+	return db.Error
+}
+
+func (u User) EditAbout() error {
+	db := modles.DB.Model(&User{}).Update("about", u.About)
+	return db.Error
+}
+
+func (u User) EditUser() error {
+	db := modles.DB.Model(&User{}).Update(User{Introduction:u.Introduction, Avatar:u.Avatar, Nickname:u.Nickname})
+	return db.Error
+}

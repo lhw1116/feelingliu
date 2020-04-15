@@ -16,8 +16,7 @@ type Article struct {
 	Title       string `json:"title" db:"title" binding:"required,max=32"`
 	Content     string `json:"content" db:"content" binding:"required"`
 	Html        string `json:"html" db:"html" binding:"required"`
-	CategoryID  int    `json:"category_id" db:"category_id" binding:"required"`
-	TagID       []int  `json:"tag_id" binding:"required"`
+	TagID       int    `json:"tag_id" binding:"required"`
 	CreatedTime string `json:"created_time" db:"created_time"`
 	UpdatedTime string `json:"updated_time" db:"updated_time"`
 	Status      string `json:"status" db:"status" binding:"required"`
@@ -29,9 +28,9 @@ type Articles struct {
 }
 
 type ArticleDetail struct {
-	A     Article  `json:"article"`
-	Tags  []Tag    `json:"tags"`
-	Views uint8    `json:"views"`
+	A     Article `json:"article"`
+	Tags  []Tag   `json:"tags"`
+	Views uint8   `json:"views"`
 }
 
 type Options struct {
@@ -44,7 +43,6 @@ type Options struct {
 	Q      string `json:"q"` // 搜索的关键字
 }
 
-
 type Option func(*Options)
 
 var defaultOptions = Options{
@@ -56,7 +54,6 @@ var defaultOptions = Options{
 	Search: false, // 搜索文章结果不进行缓存
 	Admin:  false, // 是否是admin页面请求，如果不是，文章就不包括草稿文章
 }
-
 
 func newOptions(opts ...Option) Options {
 	// 初始化默认值
@@ -93,16 +90,19 @@ func genArticles(baseSql string, opts ...Option) (data Articles, err error) {
 
 	var f string
 	if !options.Admin {
-		f = " WHERE a.`status`='published'"
+		f = " WHERE a.status='published'"
 	}
 	offset := (options.Page - 1) * options.Limit
-	selectSql := fmt.Sprintf(baseSql, "a.id, a.title, a.created_time, a.updated_time, a.`status`") + f + fmt.Sprintf(" ORDER BY a.id DESC limit %d offset %d", options.Limit, offset)
-	if db := modles.DB.Exec(selectSql).Find(&articles); db.Error != nil {
+	selectSql := fmt.Sprintf(baseSql, "a.id, a.title, a.created_time, a.updated_time, a.status") + f + fmt.Sprintf(" ORDER BY a.id DESC limit %d offset %d", options.Limit, offset)
+	fmt.Println(selectSql)
+	if db := modles.DB.Raw(selectSql).Scan(&articles); db.Error != nil {
+		fmt.Println(articles)
 		return
 	}
 
+	fmt.Println("articles: ", articles)
 	var total int
-	if findtotal := modles.DB.Exec(fmt.Sprintf(baseSql, "count(1)") + f).Find(&total); findtotal.Error != nil {
+	if findtotal := modles.DB.Model(Article{}).Where("status = ?", "published").Count(&total); findtotal.Error != nil {
 		return
 	}
 
@@ -261,9 +261,10 @@ func setArticleCache(key string, value Articles) error {
 func (a Article) GetOne(opts ...Option) (ArticleDetail, error) {
 	options := newOptions(opts...)
 	var one Article
-	if db := modles.DB.Where("id = ?",a.ID).Find(&one); db.Error != nil {
+	if db := modles.DB.Where("id = ?", a.ID).Find(&one); db.Error != nil {
 		return ArticleDetail{}, db.Error
 	}
+	fmt.Println("one : ", one)
 
 	tags, _ := GetTagsByArticleID(a.ID)
 
@@ -288,9 +289,11 @@ func addView(key string) error {
 
 func GetTagsByArticleID(articleID int) ([]Tag, error) {
 	var t []Tag
-	if db := modles.DB.Exec("SELECT t.* FROM tag t RIGHT JOIN blog_tag_article ta ON t.id=ta.tag_id WHERE ta.article_id="+"`"+strconv.Itoa(articleID)+"`").Find(&t); db.Error != nil {
+	sql := "SELECT t.* FROM tag t RIGHT JOIN blog_tag_article ta ON t.id=ta.tag_id WHERE ta.article_id=" + "'" + strconv.Itoa(articleID) + "'" + ""
+	if db := modles.DB.Exec(sql).Find(&t); db.Error != nil {
 		return nil, db.Error
 	}
+	fmt.Println("t : ", t)
 	return t, nil
 }
 
@@ -315,3 +318,51 @@ func getViews(key string) (n uint8, err error) {
 		return n, errors.New("返回数据类型有误，json无法解析")
 	}
 }
+
+func (a *Article) Create() (Article, error) {
+	createTime := time.Now().Format(modles.AppInfo.TimeFormat)
+
+	var article Article = Article{
+		Title:       a.Title,
+		Content:     a.Content,
+		Html:        a.Html,
+		TagID:       a.TagID,
+		CreatedTime: createTime,
+		Status:      a.Status,
+	}
+	db := modles.DB.Create(&article)
+	if db.Error != nil {
+		return Article{}, db.Error
+	}
+
+	//if article.Status == "published" {
+	//	if e := article.IndexBlog(); e != nil {
+	//		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 存入elastic出错, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
+	//	}
+	//}
+	return article, nil
+}
+
+//func (a Article) IndexBlog() error {
+//	req := esapi.IndexRequest{
+//		Index:      utils.ESInfo.Index,
+//		DocumentID: strconv.Itoa(a.ID),
+//		Body:       esutil.NewJSONReader(a),
+//		Refresh:    "true",
+//	}
+//
+//	res, err := req.Do(context.Background(), es)
+//	if err != nil {
+//		return err
+//	}
+//	defer res.Body.Close()
+//
+//	if res.IsError() {
+//		var e map[string]interface{}
+//		if err := json.NewDecoder(res.Body).Decode(&e); err != nil {
+//			return err
+//		}
+//		return fmt.Errorf("[%s] %s: %s", res.Status(), e["error"].(map[string]interface{})["type"], e["error"].(map[string]interface{})["reason"])
+//	}
+//	return nil
+//}
