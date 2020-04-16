@@ -26,9 +26,9 @@ func InitRouter() *gin.Engine {
 	api := r.Group(modles.AppInfo.ApiBaseUrl)
 	{
 		api.Static(modles.AppInfo.StaticBasePath, modles.AppInfo.UploadBasePath)
-		api.POST("/user/login",v1.Login)
+		api.POST("/user/login", v1.Login)
 
-		api.POST("/user/logout",v1.Logout)
+		api.POST("/user/logout", v1.Logout)
 
 		api.GET("/user/info", v1.GetUserInfo)
 
@@ -53,6 +53,8 @@ func InitRouter() *gin.Engine {
 		api.POST("/articles", v1.CreateArticle)
 
 		api.DELETE("/articles/:id", v1.DeleteArticle)
+
+		api.PUT("/articles/:id", v1.EditArticle)
 	}
 	return r
 

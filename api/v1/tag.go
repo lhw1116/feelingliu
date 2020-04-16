@@ -30,7 +30,6 @@ func CreateTag(c *gin.Context) {
 	c.JSON(http.StatusOK, utils.GenResponse(20000, t, nil))
 }
 
-
 func DeleteTag(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	r := service.Tag{ID: id}
@@ -62,4 +61,3 @@ func EditTag(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, utils.GenResponse(20000, t, nil))
 }
-

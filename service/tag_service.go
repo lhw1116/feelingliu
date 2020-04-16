@@ -17,7 +17,7 @@ func (t Tag) GetAll() ([]Tag, error) {
 }
 
 func (t *Tag) Create() (Tag, error) {
-	var one Tag = Tag{TagName:t.TagName}
+	var one Tag = Tag{TagName: t.TagName}
 	db := modles.DB.Create(&one)
 	if db.Error != nil {
 		return Tag{}, db.Error
@@ -37,9 +37,9 @@ func (t *Tag) Delete() error {
 }
 
 func (t *Tag) Edit() error {
-	var tag Tag = Tag{ID:t.ID}
+	var tag Tag = Tag{ID: t.ID}
 	db := modles.DB.Model(&tag).Update("tag_name", t.TagName)
-	fmt.Println("err: ",db.Error)
+	fmt.Println("err: ", db.Error)
 
 	return db.Error
 }

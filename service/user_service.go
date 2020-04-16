@@ -10,7 +10,6 @@ import (
 
 var jwtSecret = []byte(modles.AppInfo.JwtSecret)
 
-
 type CustomClaims struct {
 	User
 	jwt.StandardClaims
@@ -25,7 +24,6 @@ type User struct {
 	Nickname     string `json:"nickname" db:"nickname" form:"nickname"`
 	About        string `json:"about" db:"about" form:"about"`
 }
-
 
 func (u *User) CheckAuth() bool {
 	var user User
@@ -86,6 +84,6 @@ func (u User) EditAbout() error {
 }
 
 func (u User) EditUser() error {
-	db := modles.DB.Model(&User{}).Update(User{Introduction:u.Introduction, Avatar:u.Avatar, Nickname:u.Nickname})
+	db := modles.DB.Model(&User{}).Update(User{Introduction: u.Introduction, Avatar: u.Avatar, Nickname: u.Nickname})
 	return db.Error
 }

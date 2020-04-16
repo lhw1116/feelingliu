@@ -22,17 +22,16 @@ var (
 	e    error
 )
 
-
 func CustomLogger() gin.HandlerFunc {
 	gin.DisableConsoleColor()
 	file, err := os.OpenFile("logs/gin.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		panic(err)
 	}
-	gin.DefaultWriter = io.MultiWriter(file,os.Stdout)
+	gin.DefaultWriter = io.MultiWriter(file, os.Stdout)
 
-	g :=gin.LoggerWithFormatter(func(params gin.LogFormatterParams) string {
-		levelFlags := []string{"INFO","WRAN","ERROR","FATAL"}
+	g := gin.LoggerWithFormatter(func(params gin.LogFormatterParams) string {
+		levelFlags := []string{"INFO", "WRAN", "ERROR", "FATAL"}
 		var level string
 		status := params.StatusCode
 
@@ -59,7 +58,6 @@ func CustomLogger() gin.HandlerFunc {
 			params.Request.UserAgent(),
 			params.ErrorMessage,
 		)
-
 
 	})
 

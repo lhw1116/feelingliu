@@ -456,3 +456,59 @@ record not foundrecord not found[ 2020-04-15 17:58:02 ] 读取缓存失败, redi
 [ 2020-04-16 00:05:40 ] 删除阅读量失败, redis: client is closed
 [ 2020-04-16 00:05:45 ] 读取缓存失败, redis: client is closed
 [ 2020-04-16 00:05:45 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 09:58:48 ] 读取缓存失败, redis: nil
+[ 2020-04-16 09:58:48 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 09:59:38 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 09:59:38 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:01:25 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:01:25 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:01:27 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:01:27 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:26:24 ] 读取缓存失败, redis: nil
+[ 2020-04-16 10:26:24 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:26:28 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:26:28 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:26:32 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:26:32 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:26:50 ] 读取缓存失败, redis: nil
+[ 2020-04-16 10:26:50 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:27:55 ] 读取缓存失败, redis: nil
+[ 2020-04-16 10:27:55 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:32:36 ] 读取缓存失败, redis: nil
+[ 2020-04-16 10:32:36 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:32:44 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:32:44 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:32:50 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:32:50 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:32:56 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:32:56 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:33:04 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:33:04 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:33:16 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:33:16 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:33:23 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:33:23 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:05 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:34:05 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:34:10 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:34:10 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:34:18 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:34:18 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:34:20 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:20 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:33 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:33 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:33 ] 删除阅读量失败, redis: client is closed
+[ 2020-04-16 10:34:35 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:34:35 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:34:53 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:11 ] 获取阅读量失败, redis: nil
+[ 2020-04-16 10:46:11 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:16 ] 读取缓存失败, redis: client is closed
+[ 2020-04-16 10:46:16 ] 写入缓存失败, redis: client is closed
+[ 2020-04-16 10:46:18 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:18 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:27 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:27 ] 添加阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:33 ] 获取阅读量失败, redis: client is closed
+[ 2020-04-16 10:46:33 ] 添加阅读量失败, redis: client is closed

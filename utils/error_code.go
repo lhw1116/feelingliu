@@ -94,4 +94,3 @@ var MsgFlags = map[int]string{
 func ErrorText(code int) string {
 	return MsgFlags[code]
 }
-

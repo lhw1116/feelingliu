@@ -21,7 +21,6 @@ func GetArticles(c *gin.Context) {
 	admin := c.DefaultQuery("admin", "")
 
 	if tag != "" {
-		fmt.Println("进来了")
 		data, e := service.GetArticlesByTag(service.SetLimitPage(limit, page), service.SetAdmin(admin), service.SetTag(tag))
 		if e != nil {
 			c.JSON(http.StatusInternalServerError, utils.GenResponse(40022, nil, e))
@@ -81,7 +80,6 @@ func GetArticle(c *gin.Context) {
 func CreateArticle(c *gin.Context) {
 	article := &service.Article{}
 	if e := c.ShouldBindJSON(article); e != nil {
-		fmt.Println("e:",e)
 		c.JSON(http.StatusBadRequest, utils.GenResponse(40024, nil, e))
 		return
 	}
@@ -105,6 +103,27 @@ func DeleteArticle(c *gin.Context) {
 
 	if e := r.Delete(); e != nil {
 		c.JSON(http.StatusInternalServerError, utils.GenResponse(40026, nil, e))
+		return
+	}
+	c.JSON(http.StatusOK, utils.GenResponse(20000, article, nil))
+	return
+}
+
+func EditArticle(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	admin := c.DefaultQuery("admin", "")
+	r := service.Article{ID: id}
+
+	articleDetail, _ := r.GetOne(service.SetAdmin(admin))
+	article := articleDetail.A
+
+	if e := c.ShouldBindJSON(&article); e != nil {
+		c.JSON(http.StatusBadRequest, utils.GenResponse(40024, nil, e))
+		return
+	}
+
+	if e := article.Edit(); e != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40025, nil, e))
 		return
 	}
 	c.JSON(http.StatusOK, utils.GenResponse(20000, article, nil))

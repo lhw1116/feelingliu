@@ -68,7 +68,8 @@ func newOptions(opts ...Option) Options {
 
 func GetArticlesByTag(opts ...Option) (data Articles, err error) {
 	options := newOptions(opts...)
-	baseSql := "SELECT %s FROM article a  INNER JOIN blog_tag_article ta ON a.id=ta.article_id INNER JOIN tag t ON ta.tag_id=t.id AND t.tag_name=" + "'" + options.T + "'" + ""
+	//baseSql := "SELECT %s FROM article a  INNER JOIN blog_tag_article ta ON a.id=ta.article_id INNER JOIN tag t ON ta.tag_id=t.id AND t.tag_name=" + "'" + options.T + "'" + ""
+	baseSql := "SELECT %s FROM article a INNER JOIN tag t ON a.tag_id=t.id AND t.tag_name=" + "'" + options.T + "'" + ""
 	data, err = genArticles(baseSql, opts...)
 	return
 }
@@ -94,19 +95,17 @@ func genArticles(baseSql string, opts ...Option) (data Articles, err error) {
 	}
 	offset := (options.Page - 1) * options.Limit
 	selectSql := fmt.Sprintf(baseSql, "a.id, a.title, a.created_time, a.updated_time, a.status") + f + fmt.Sprintf(" ORDER BY a.id DESC limit %d offset %d", options.Limit, offset)
-	fmt.Println(selectSql)
 	if db := modles.DB.Raw(selectSql).Scan(&articles); db.Error != nil {
-		fmt.Println(articles)
 		return
 	}
 
-	fmt.Println("articles: ", articles)
-	var total int
-	if findtotal := modles.DB.Model(Article{}).Where("status = ?", "published").Count(&total); findtotal.Error != nil {
-		return
-	}
-
-	data.Total = total
+	//var total int
+	//if findtotal := modles.DB.Model(Article{}).Where("status = ?, ", "published").Count(&total); findtotal.Error != nil {
+	//	return
+	//}
+	//fmt.Println("total : ", total)
+	//data.Total = total
+	data.Total = len(articles)
 	data.Items = articles
 
 	if !options.Search {
@@ -292,7 +291,6 @@ func GetTagsByArticleID(articleID int) ([]Tag, error) {
 	if db := modles.DB.Raw(sql).Scan(&t); db.Error != nil {
 		return nil, db.Error
 	}
-	fmt.Println("t : ", t)
 	return t, nil
 }
 
@@ -366,9 +364,8 @@ func (a *Article) Create() (Article, error) {
 //	return nil
 //}
 
-
 func (a *Article) Delete() error {
-	var article = Article{ID:a.ID}
+	var article = Article{ID: a.ID}
 	db := modles.DB.Delete(&article)
 	if db.Error != nil {
 		return db.Error
@@ -381,6 +378,43 @@ func (a *Article) Delete() error {
 	// 从ES中删除
 	//if e := a.DeleteFromES(); e != nil {
 	//	utils.WriteErrorLog(fmt.Sprintf("[ %s ] 从elastic中删除出错, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), e))
+	//}
+	return nil
+}
+
+func (a *Article) Edit() error {
+	updateTime := time.Now().Format(modles.AppInfo.TimeFormat)
+
+	var newarticle = Article{
+		ID:          a.ID,
+		Title:       a.Title,
+		Content:     a.Content,
+		Html:        a.Html,
+		TagID:       a.TagID,
+		UpdatedTime: updateTime,
+		Status:      a.Status,
+	}
+	save := modles.DB.Save(&newarticle)
+	if save.Error != nil {
+		return save.Error
+	}
+
+	//if len(a.TagID) > 0 {
+	//	for _, tagID := range a.TagID {
+	//		_, e := db.Exec("insert into blog_tag_article (tag_id, article_id) values (?, ?)", tagID, a.ID)
+	//		if e != nil {
+	//			return e
+	//		}
+	//	}
+	//}
+	//if a.Status == "published" {
+	//	if e := a.IndexBlog(); e != nil {
+	//		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 从elastic更新出错, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), e))
+	//	}
+	//} else {
+	//	if e := a.DeleteFromES(); e != nil {
+	//		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 从elastic删除出错, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), e))
+	//	}
 	//}
 	return nil
 }

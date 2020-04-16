@@ -1,6 +1,6 @@
 package modles
 
-import(
+import (
 	"time"
 )
 

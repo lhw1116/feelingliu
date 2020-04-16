@@ -11,13 +11,13 @@ import (
 func Login(c *gin.Context) {
 	data := make(map[string]interface{})
 	user := service.User{}
-	if err :=c.ShouldBind(&user); err != nil {
-		c.JSON(http.StatusBadRequest,utils.GenResponse(40000,nil,err))
+	if err := c.ShouldBind(&user); err != nil {
+		c.JSON(http.StatusBadRequest, utils.GenResponse(40000, nil, err))
 		return
 	}
 	isExist := user.CheckAuth()
 	if isExist {
-		token, err := user.GenToken()  //  for last token...
+		token, err := user.GenToken() //  for last token...
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, utils.GenResponse(40004, nil, err))
 			return
@@ -53,7 +53,6 @@ func GetUserAbout(c *gin.Context) {
 	c.JSON(http.StatusOK, utils.GenResponse(20000, about, nil))
 	return
 }
-
 
 func EditUser(c *gin.Context) {
 

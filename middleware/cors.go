@@ -13,7 +13,7 @@ func CorsMiddleware() gin.HandlerFunc {
 		var filterHost = [...]string{"http://localhost.*"}
 		// filterHost 做过滤器，防止不合法的域名访问
 		var isAccess = false
-		for _, v := range (filterHost) {
+		for _, v := range filterHost {
 			match, _ := regexp.MatchString(v, origin)
 			if match {
 				isAccess = true

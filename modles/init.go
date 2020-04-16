@@ -11,7 +11,6 @@ var DB *gorm.DB
 var RedisPool *redis.Client
 var err error
 
-
 func init() {
 
 	//  Init database connect...
@@ -20,8 +19,8 @@ func init() {
 		DBInfo.Password,
 		DBInfo.Host,
 		DBInfo.Port,
-		DBInfo.DBName,)
-	DB, err = gorm.Open(DBInfo.Mode,dsn)
+		DBInfo.DBName)
+	DB, err = gorm.Open(DBInfo.Mode, dsn)
 	if err != nil {
 		panic(err)
 	}
@@ -36,9 +35,8 @@ func init() {
 		Password: RedisInfo.Password,
 		DB:       RedisInfo.DB,
 	})
-	re, err  := RedisPool.Ping().Result()
+	_, err := RedisPool.Ping().Result()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("re:",re)
 }
