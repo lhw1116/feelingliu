@@ -95,4 +95,18 @@ func CreateArticle(c *gin.Context) {
 	return
 }
 
+func DeleteArticle(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	admin := c.DefaultQuery("admin", "")
+	r := service.Article{ID: id}
 
+	articleDetail, _ := r.GetOne(service.SetAdmin(admin))
+	article := articleDetail.A
+
+	if e := r.Delete(); e != nil {
+		c.JSON(http.StatusInternalServerError, utils.GenResponse(40026, nil, e))
+		return
+	}
+	c.JSON(http.StatusOK, utils.GenResponse(20000, article, nil))
+	return
+}

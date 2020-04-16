@@ -264,7 +264,6 @@ func (a Article) GetOne(opts ...Option) (ArticleDetail, error) {
 	if db := modles.DB.Where("id = ?", a.ID).Find(&one); db.Error != nil {
 		return ArticleDetail{}, db.Error
 	}
-	fmt.Println("one : ", one)
 
 	tags, _ := GetTagsByArticleID(a.ID)
 
@@ -290,7 +289,7 @@ func addView(key string) error {
 func GetTagsByArticleID(articleID int) ([]Tag, error) {
 	var t []Tag
 	sql := "SELECT t.* FROM tag t RIGHT JOIN blog_tag_article ta ON t.id=ta.tag_id WHERE ta.article_id=" + "'" + strconv.Itoa(articleID) + "'" + ""
-	if db := modles.DB.Exec(sql).Find(&t); db.Error != nil {
+	if db := modles.DB.Raw(sql).Scan(&t); db.Error != nil {
 		return nil, db.Error
 	}
 	fmt.Println("t : ", t)
@@ -366,3 +365,22 @@ func (a *Article) Create() (Article, error) {
 //	}
 //	return nil
 //}
+
+
+func (a *Article) Delete() error {
+	var article = Article{ID:a.ID}
+	db := modles.DB.Delete(&article)
+	if db.Error != nil {
+		return db.Error
+	}
+	// 删除阅读量
+	viewKey := a.ViewKey()
+	if e := tools.DelKey(viewKey); e != nil {
+		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 删除阅读量失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
+	}
+	// 从ES中删除
+	//if e := a.DeleteFromES(); e != nil {
+	//	utils.WriteErrorLog(fmt.Sprintf("[ %s ] 从elastic中删除出错, %v\n", time.Now().Format(utils.AppInfo.TimeFormat), e))
+	//}
+	return nil
+}
