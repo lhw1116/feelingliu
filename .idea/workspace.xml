@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4f17d49-7f5d-4b02-812a-b219b5e74489" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/article.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/gin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/gin.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modles/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/modles/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/article_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/article_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,16 +64,16 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\liuhanwen\Desktop\feelingliu\modles" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\liuhanwen\Desktop\feelingliu\utils" />
       <recent name="C:\Users\liuhanwen\Desktop\feelingliu\middleware" />
       <recent name="C:\Users\liuhanwen\Desktop\feelingliu" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\liuhanwen\Desktop\feelingliu\modles" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
@@ -150,22 +148,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="505" y="51" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1586845933272" />
-    <state width="1865" height="258" key="GridCell.Tab.0.bottom" timestamp="1587005415046">
+    <state width="1865" height="257" key="GridCell.Tab.0.bottom" timestamp="1587137436081">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1587005415046" />
-    <state width="1865" height="258" key="GridCell.Tab.0.center" timestamp="1587005415045">
+    <state width="1865" height="257" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436081" />
+    <state width="1865" height="257" key="GridCell.Tab.0.center" timestamp="1587137436080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="258" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1587005415045" />
-    <state width="1865" height="258" key="GridCell.Tab.0.left" timestamp="1587005415045">
+    <state width="1865" height="257" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436080" />
+    <state width="1865" height="257" key="GridCell.Tab.0.left" timestamp="1587137436079">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="258" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1587005415045" />
-    <state width="1865" height="258" key="GridCell.Tab.0.right" timestamp="1587005415046">
+    <state width="1865" height="257" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436079" />
+    <state width="1865" height="257" key="GridCell.Tab.0.right" timestamp="1587137436081">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="258" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1587005415046" />
+    <state width="1865" height="257" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436081" />
     <state width="1865" height="339" key="GridCell.Tab.1.bottom" timestamp="1586966831289">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -182,10 +180,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1865" height="339" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1586966831289" />
-    <state x="348" y="81" key="SettingsEditor" timestamp="1583660906186">
+    <state x="348" y="81" key="SettingsEditor" timestamp="1587014786811">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="348" y="81" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1583660906186" />
+    <state x="348" y="81" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1587014786811" />
     <state x="509" y="188" width="901" height="674" key="find.popup" timestamp="1587005405307">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -204,17 +202,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/api/v1/user.go</url>
-          <line>57</line>
+          <line>56</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/api/v1/tag.go</url>
-          <line>49</line>
+          <line>48</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/service/article_service.go</url>
-          <line>367</line>
+          <line>368</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

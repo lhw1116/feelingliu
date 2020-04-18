@@ -384,16 +384,17 @@ func (a *Article) Delete() error {
 
 func (a *Article) Edit() error {
 	updateTime := time.Now().Format(modles.AppInfo.TimeFormat)
+	var newarticle = Article{}
+	modles.DB.Where("id = ?",a.ID).Find(&newarticle)
 
-	var newarticle = Article{
-		ID:          a.ID,
-		Title:       a.Title,
-		Content:     a.Content,
-		Html:        a.Html,
-		TagID:       a.TagID,
-		UpdatedTime: updateTime,
-		Status:      a.Status,
-	}
+
+	newarticle.ID = a.ID
+	newarticle.Title = a.Title
+	newarticle.Content = a.Content
+	newarticle.Html = a.Html
+	newarticle.TagID = a.TagID
+	newarticle.UpdatedTime = updateTime
+	newarticle.Status = a.Status
 	save := modles.DB.Save(&newarticle)
 	if save.Error != nil {
 		return save.Error
