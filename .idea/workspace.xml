@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4f17d49-7f5d-4b02-812a-b219b5e74489" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/gin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/gin.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/article_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/article_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/redis_cli.go" beforeDir="false" afterPath="$PROJECT_DIR$/tools/redis_cli.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,22 +148,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="505" y="51" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1586845933272" />
-    <state width="1865" height="257" key="GridCell.Tab.0.bottom" timestamp="1587137436081">
+    <state width="1865" height="257" key="GridCell.Tab.0.bottom" timestamp="1587225887512">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="257" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436081" />
-    <state width="1865" height="257" key="GridCell.Tab.0.center" timestamp="1587137436080">
+    <state width="1865" height="257" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1587225887512" />
+    <state width="1865" height="257" key="GridCell.Tab.0.center" timestamp="1587225887512">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="257" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436080" />
-    <state width="1865" height="257" key="GridCell.Tab.0.left" timestamp="1587137436079">
+    <state width="1865" height="257" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1587225887512" />
+    <state width="1865" height="257" key="GridCell.Tab.0.left" timestamp="1587225887512">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="257" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436079" />
-    <state width="1865" height="257" key="GridCell.Tab.0.right" timestamp="1587137436081">
+    <state width="1865" height="257" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1587225887512" />
+    <state width="1865" height="257" key="GridCell.Tab.0.right" timestamp="1587225887512">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1865" height="257" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1587137436081" />
+    <state width="1865" height="257" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1587225887512" />
     <state width="1865" height="339" key="GridCell.Tab.1.bottom" timestamp="1586966831289">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -184,10 +184,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="348" y="81" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1587014786811" />
-    <state x="509" y="188" width="901" height="674" key="find.popup" timestamp="1587005405307">
+    <state x="509" y="188" width="901" height="674" key="find.popup" timestamp="1587226093763">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="509" y="188" width="901" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1587005405307" />
+    <state x="509" y="188" width="901" height="674" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1587226093763" />
     <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1583907885321">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -212,7 +212,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/service/article_service.go</url>
-          <line>368</line>
+          <line>369</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

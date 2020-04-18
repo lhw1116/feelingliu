@@ -33,54 +33,29 @@ func SetTimeout(timeout bool) Option {
 }
 
 func SetKey(key string, value interface{}, opts ...Option) error {
-	conn := modles.RedisPool
-	defer func() {
-		if e := conn.Close(); e != nil {
-			return
-		}
-	}()
+
 
 	options := newOptions(opts...)
 	if options.Timeout {
-		_, err := conn.Set(key, value, time.Duration(modles.RedisInfo.CacheTime)).Result()
+		err := modles.RedisPool.Set(key, value, time.Duration(modles.RedisInfo.CacheTime) * time.Second).Err()
 		return err
 	}
-	_, err := conn.Set(key, value, 0).Result()
+	err := modles.RedisPool.Set(key, value, time.Duration(0) * time.Second).Err()
 	return err
 }
 
 func GetKey(key string) (data interface{}, err error) {
-	conn := modles.RedisPool
-	defer func() {
-		if err := conn.Close(); err != nil {
-			return
-		}
-	}()
-
-	data, err = conn.Get(key).Result()
+	data, err = modles.RedisPool.Get(key).Result()
 	return
 }
 
 func DelKey(key string) error {
-	conn := modles.RedisPool
-	defer func() {
-		if e := conn.Close(); e != nil {
-			return
-		}
-	}()
-
-	_, err := conn.Del(key).Result()
+	err := modles.RedisPool.Del(key).Err()
 	return err
 }
 
 func INCRKey(key string) error {
-	conn := modles.RedisPool
-	defer func() {
-		if e := conn.Close(); e != nil {
-			return
-		}
-	}()
 
-	_, err := conn.Incr(key).Result()
+	err := modles.RedisPool.Incr(key).Err()
 	return err
 }

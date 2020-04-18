@@ -7,6 +7,7 @@ import (
 	"feelingliu/tools"
 	"feelingliu/utils"
 	"fmt"
+	"github.com/go-redis/redis/v7"
 	"strconv"
 	"time"
 )
@@ -79,7 +80,7 @@ func genArticles(baseSql string, opts ...Option) (data Articles, err error) {
 	key := articleCacheKey(options)
 	if !options.Search {
 		cacheData, e := getArticleCache(key)
-		if e != nil {
+		if e != redis.Nil {
 			utils.WriteErrorLog(fmt.Sprintf("[ %s ] 读取缓存失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
 		}
 		if cacheData.Total != 0 {
@@ -333,10 +334,10 @@ func (a *Article) Create() (Article, error) {
 	}
 
 	//if article.Status == "published" {
-	//	if e := article.IndexBlog(); e != nil {
-	//		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 存入elastic出错, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
-	//	}
-	//}
+	//	//	if e := article.IndexBlog(); e != nil {
+	//	//		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 存入elastic出错, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
+	//	//	}
+	//	//}
 	return article, nil
 }
 
