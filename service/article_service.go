@@ -2,7 +2,6 @@ package service
 
 import (
 	"encoding/json"
-	"errors"
 	"feelingliu/modles"
 	"feelingliu/tools"
 	"feelingliu/utils"
@@ -31,7 +30,7 @@ type Articles struct {
 type ArticleDetail struct {
 	A     Article `json:"article"`
 	Tags  []Tag   `json:"tags"`
-	Views uint8   `json:"views"`
+	Views int   `json:"views"`
 }
 
 type Options struct {
@@ -80,6 +79,7 @@ func genArticles(baseSql string, opts ...Option) (data Articles, err error) {
 	key := articleCacheKey(options)
 	if !options.Search {
 		cacheData, e := getArticleCache(key)
+		fmt.Println(cacheData)
 		if e != redis.Nil {
 			utils.WriteErrorLog(fmt.Sprintf("[ %s ] 读取缓存失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), e))
 		}
@@ -128,19 +128,15 @@ func articleCacheKey(opts Options) string {
 
 func getArticleCache(key string) (a Articles, err error) {
 	data, e := tools.GetKey(key)
-	if e != nil || data == nil {
+	if e != nil {
+		fmt.Println(err)
 		return a, e
 	}
 
-	v, ok := data.([]uint8)
-	if ok {
-		if e := json.Unmarshal([]byte(v[:]), &a); e != nil {
-			return a, e
-		}
-		return a, nil
-	} else {
-		return a, errors.New("返回数据类型有误，json无法解析")
+	if e := json.Unmarshal([]byte(data), &a); e != nil {
+		return a, e
 	}
+	return a, nil
 }
 
 func SetLimitPage(limit, page string) Option {
@@ -253,7 +249,11 @@ func SetSearch(search bool) Option {
 }
 
 func setArticleCache(key string, value Articles) error {
+	//fmt.Println(value.Items)
+	//fmt.Println(value.Total)
 	marshal, _ := json.Marshal(value)
+	//fmt.Println(string(marshal))
+	//fmt.Println(key)
 	e := tools.SetKey(key, marshal, tools.SetTimeout(true))
 	return e
 }
@@ -269,6 +269,7 @@ func (a Article) GetOne(opts ...Option) (ArticleDetail, error) {
 
 	viewKey := one.ViewKey()
 	n, err := getViews(viewKey)
+	fmt.Println("n",n)
 	if err != nil {
 		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 获取阅读量失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), err))
 	}
@@ -300,21 +301,16 @@ func (a Article) ViewKey() string {
 	return viewKey
 }
 
-func getViews(key string) (n uint8, err error) {
+func getViews(key string) (n int, err error) {
 	data, e := tools.GetKey(key)
-	if e != nil || data == nil {
+	if e != nil {
 		return n, e
 	}
 
-	v, ok := data.([]uint8)
-	if ok {
-		if e := json.Unmarshal([]byte(v[:]), &n); e != nil {
-			return n, e
-		}
-		return n, nil
-	} else {
-		return n, errors.New("返回数据类型有误，json无法解析")
+	if e := json.Unmarshal([]byte(data), &n); e != nil {
+		return n, e
 	}
+	return n, nil
 }
 
 func (a *Article) Create() (Article, error) {
@@ -386,8 +382,7 @@ func (a *Article) Delete() error {
 func (a *Article) Edit() error {
 	updateTime := time.Now().Format(modles.AppInfo.TimeFormat)
 	var newarticle = Article{}
-	modles.DB.Where("id = ?",a.ID).Find(&newarticle)
-
+	modles.DB.Where("id = ?", a.ID).Find(&newarticle)
 
 	newarticle.ID = a.ID
 	newarticle.Title = a.Title

@@ -2,6 +2,7 @@ package tools
 
 import (
 	"feelingliu/modles"
+	"fmt"
 	"time"
 )
 
@@ -44,8 +45,11 @@ func SetKey(key string, value interface{}, opts ...Option) error {
 	return err
 }
 
-func GetKey(key string) (data interface{}, err error) {
+func GetKey(key string) (data string, err error) {
 	data, err = modles.RedisPool.Get(key).Result()
+	fmt.Println(key)
+	fmt.Println(data)
+	fmt.Println(err)
 	return
 }
 

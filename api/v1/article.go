@@ -3,7 +3,6 @@ package v1
 import (
 	"feelingliu/service"
 	"feelingliu/utils"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -67,7 +66,6 @@ func GetArticle(c *gin.Context) {
 	r := service.Article{ID: id}
 
 	articleDetail, e := r.GetOne(service.SetAdmin(admin))
-	fmt.Println(articleDetail)
 	if e != nil {
 		c.JSON(http.StatusNotFound, utils.GenResponse(40020, nil, e))
 		return
