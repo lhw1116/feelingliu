@@ -1,2 +1,5 @@
 .idea
 .idea/workspace.xml
+
+logs/error.log
+logs/gin.log

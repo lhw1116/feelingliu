@@ -34,6 +34,15 @@ func Logout(c *gin.Context) {
 	c.JSON(http.StatusOK, utils.GenResponse(20000, nil, nil))
 }
 
+// @Summary Add a new pet to the store
+// @Description get string by ID
+// @Accept  json
+// @Produce  json
+// @Param   some_id     path    int     true        "Some ID"
+// @Success 200 {string} string	"ok"
+// @Failure 400 {object} web.APIError "We need ID!!"
+// @Failure 404 {object} web.APIError "Can not find ID"
+// @Router /testapi/get-string-by-int/{some_id} [get]
 func GetUserInfo(c *gin.Context) {
 	userInfo, err := service.GetUser()
 	if err != nil {

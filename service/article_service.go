@@ -30,7 +30,7 @@ type Articles struct {
 type ArticleDetail struct {
 	A     Article `json:"article"`
 	Tags  []Tag   `json:"tags"`
-	Views int   `json:"views"`
+	Views int     `json:"views"`
 }
 
 type Options struct {
@@ -269,7 +269,7 @@ func (a Article) GetOne(opts ...Option) (ArticleDetail, error) {
 
 	viewKey := one.ViewKey()
 	n, err := getViews(viewKey)
-	fmt.Println("n",n)
+	fmt.Println("n", n)
 	if err != nil {
 		utils.WriteErrorLog(fmt.Sprintf("[ %s ] 获取阅读量失败, %v\n", time.Now().Format(modles.AppInfo.TimeFormat), err))
 	}

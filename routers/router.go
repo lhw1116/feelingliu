@@ -5,11 +5,16 @@ import (
 	"feelingliu/middleware"
 	"feelingliu/modles"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "github.com/swaggo/gin-swagger/example/basic/docs"
 	"net/http"
 )
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
+	url := ginSwagger.URL("http://localhost:8888/swagger/doc.json") // The url pointing to API definition
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	r.HandleMethodNotAllowed = true
 
 	r.NoMethod(func(c *gin.Context) {

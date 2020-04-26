@@ -37,6 +37,6 @@ func init() {
 	})
 	_, err := RedisPool.Ping().Result()
 	if err != nil {
-		panic(err)
+		//panic(err)
 	}
 }

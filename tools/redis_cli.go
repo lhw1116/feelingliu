@@ -35,13 +35,12 @@ func SetTimeout(timeout bool) Option {
 
 func SetKey(key string, value interface{}, opts ...Option) error {
 
-
 	options := newOptions(opts...)
 	if options.Timeout {
-		err := modles.RedisPool.Set(key, value, time.Duration(modles.RedisInfo.CacheTime) * time.Second).Err()
+		err := modles.RedisPool.Set(key, value, time.Duration(modles.RedisInfo.CacheTime)*time.Second).Err()
 		return err
 	}
-	err := modles.RedisPool.Set(key, value, time.Duration(0) * time.Second).Err()
+	err := modles.RedisPool.Set(key, value, time.Duration(0)*time.Second).Err()
 	return err
 }
 
