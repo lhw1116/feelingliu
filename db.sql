@@ -11,8 +11,6 @@ CREATE DATABASE
                                `html` text NOT NULL,
                                `tag_id` INT UNSIGNED NOT NULL,
                                `created_time` VARCHAR (32) NOT NULL,
-                               `updated_time` VARCHAR (32) DEFAULT '',
-                               `status` VARCHAR (16) NOT NULL DEFAULT 'published',
                                PRIMARY KEY (`id`),
                                UNIQUE KEY `title` (`title`) USING BTREE,
                                KEY `tags` (`tag_id`)
@@ -31,10 +29,6 @@ CREATE TABLE `user` (
                         `id` INT NOT NULL AUTO_INCREMENT,
                         `username` VARCHAR (255) DEFAULT NULL,
                         `password` VARCHAR (255) DEFAULT NULL,
-                        `introduction` VARCHAR (255) DEFAULT NULL,
-                        `avatar` VARCHAR (255) DEFAULT NULL,
-                        `nickname` VARCHAR (255) DEFAULT NULL,
-                        `about` VARCHAR (255) DEFAULT NULL,
                         PRIMARY KEY (`id`)
 ) ENGINE = INNODB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4;
 
