@@ -31,7 +31,7 @@ func CustomLogger() gin.HandlerFunc {
 	gin.DefaultWriter = io.MultiWriter(file, os.Stdout)
 
 	g := gin.LoggerWithFormatter(func(params gin.LogFormatterParams) string {
-		levelFlags := []string{"INFO", "WRAN", "ERROR", "FATAL"}
+		levelFlags := []string{"INFO", "WARN", "ERROR", "FATAL"}
 		var level string
 		status := params.StatusCode
 
